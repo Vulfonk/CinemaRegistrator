@@ -16,13 +16,16 @@ namespace WebApplication4.Data
             var sessionsList = context.Sessions
                 .Select(s => new JsonSession(
                         s.DateTime, s.FilmNavigation.Name,
-                        s.Tickets.Where(t => t.IsSold == 0).Count()))
+                        s.Tickets.Where(t => t.IsSold == 0).Count(),
+                        s.HallNavigation.Number))
                 .ToList()
                 .Where(s => dtHelper.DateTimeInRange(s.StartTime, currentTime, 4));
 
             return sessionsList;
 
         }
+
+
 
     }
 
@@ -31,12 +34,15 @@ namespace WebApplication4.Data
         public DateTime StartTime { get; set;}        
         public string FilmName { get; set;}
         public int AvailiblePlaces { get; set;}
+        public int HallNumber { get; set;}
 
-        public JsonSession(string startStr, string film, int availiblePlaces)
+
+        public JsonSession(string startStr, string film, int availiblePlaces, int hallNum)
         {
             StartTime = new DateTimeHelper().ParseDateTime(startStr);
             FilmName = film;
             AvailiblePlaces = availiblePlaces;
+            HallNumber = hallNum;
         }
 
     }
