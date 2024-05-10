@@ -1,4 +1,6 @@
+using CinemaDB.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication4.Data;
 
 namespace WebApplication4.Controllers
 {
@@ -19,15 +21,11 @@ namespace WebApplication4.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public string Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var helper = new DbHelper();
+
+            return helper.GetFirstFilmName();
         }
     }
 }
