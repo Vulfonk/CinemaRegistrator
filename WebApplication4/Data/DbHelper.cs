@@ -7,6 +7,7 @@ namespace WebApplication4.Data
 {
     public class DbHelper
     {
+
         public IEnumerable<JsonSession> GetSessions(DateTime currentTime)
         {
             using DbCinemaContext context = new DbCinemaContext();
@@ -15,7 +16,7 @@ namespace WebApplication4.Data
 
             var sessionsList = context.Sessions
                 .Select(s => new JsonSession(
-                        s.DateTime, s.FilmNavigation.Name,
+                        s.DateTime, s.FilmNavigation.Name, s.Film,
                         s.Tickets.Where(t => t.IsSold == 0).Count(),
                         s.HallNavigation.Number))
                 .ToList()
@@ -26,21 +27,22 @@ namespace WebApplication4.Data
         }
 
 
-
     }
 
     public class JsonSession
     {
         public DateTime StartTime { get; set;}        
         public string FilmName { get; set;}
+        public int FilmID { get; }
         public int AvailiblePlaces { get; set;}
         public int HallNumber { get; set;}
 
 
-        public JsonSession(string startStr, string film, int availiblePlaces, int hallNum)
+        public JsonSession(string startStr, string film, int availiblePlaces, int filmId, int hallNum)
         {
             StartTime = new DateTimeHelper().ParseDateTime(startStr);
             FilmName = film;
+            FilmID = filmId;
             AvailiblePlaces = availiblePlaces;
             HallNumber = hallNum;
         }
