@@ -21,11 +21,10 @@ namespace WebApplication4.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public string Get()
+        public string Get(string date)
         {
             var helper = new DbHelper();
-
-            return helper.GetFirstFilmName();
+            return helper.GetSessions(DateTime.Parse(date));
         }
     }
 }
