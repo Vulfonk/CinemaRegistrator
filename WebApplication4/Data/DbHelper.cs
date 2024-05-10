@@ -9,7 +9,6 @@ namespace WebApplication4.Data
     {
         public IEnumerable<JsonSession> GetSessions(DateTime currentTime)
         {
-
             using DbCinemaContext context = new DbCinemaContext();
 
             var dtHelper = new DateTimeHelper();
@@ -20,8 +19,6 @@ namespace WebApplication4.Data
                         s.Tickets.Where(t => t.IsSold == 0).Count()))
                 .ToList()
                 .Where(s => dtHelper.DateTimeInRange(s.StartTime, currentTime, 4));
-
-
 
             return sessionsList;
 
