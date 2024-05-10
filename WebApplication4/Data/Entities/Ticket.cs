@@ -11,6 +11,8 @@ public partial class Ticket
 
     public string DateTimePurchase { get; set; } = null!;
 
+    public int IsSold { get; set; }
+
     public int Place { get; set; }
 
     public int Row { get; set; }

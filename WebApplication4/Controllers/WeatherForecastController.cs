@@ -21,7 +21,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public string Get(string date)
+        public IEnumerable<JsonSession> Get(string date)
         {
             var helper = new DbHelper();
             return helper.GetSessions(DateTime.Parse(date));

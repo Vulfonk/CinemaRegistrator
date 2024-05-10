@@ -154,6 +154,7 @@ public partial class DbCinemaContext : DbContext
             entity.Property(e => e.Place).HasColumnName("place");
             entity.Property(e => e.Row).HasColumnName("row");
             entity.Property(e => e.Session).HasColumnName("session");
+            entity.Property(e => e.IsSold).HasColumnName("is_sold");
 
             entity.HasOne(d => d.SessionNavigation).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.Session)
