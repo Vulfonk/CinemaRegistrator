@@ -11,11 +11,16 @@ namespace WebApplication4.Data
         {
             using DbCinemaContext context = new DbCinemaContext();
 
-            return context.Sessions.Select(s=> new OSession() { FilmName = s.FilmNavigation.Name, StartTimeStr = s.DateTime})
-                .ToList()
-                .Where(s=> DateTimeInRange(ParseDateTime(s.StartTimeStr), currentTime))
-                .Select(s=>s.FilmName + "\t" + s.StartTimeStr)
-                .Aggregate((a, b) => a + "\n" + b);
+            var sessionsList = context.Sessions
+                ?.Select(s => new OSession() { FilmName = s.FilmNavigation.Name, StartTimeStr = s.DateTime })
+                ?.ToList()
+                ?.Where(s => DateTimeInRange(ParseDateTime(s.StartTimeStr), currentTime))
+                ?.Select(s => s.FilmName + "\t" + s.StartTimeStr);
+
+            return sessionsList?.Any() == true 
+                ? string.Join("\n", sessionsList) 
+                : "Empty";
+
         }
 
         private bool DateTimeInRange(DateTime curDate, DateTime refDate)
