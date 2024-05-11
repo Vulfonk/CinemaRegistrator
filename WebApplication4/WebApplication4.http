@@ -1,6 +1,6 @@
 @WebApplication4_HostAddress = http://localhost:5072
 
-GET {{WebApplication4_HostAddress}}/weatherforecast/
+GET {{WebApplication4_HostAddress}}/NearestSessions?date=2024-05-03%2005%3A15
 Accept: application/json
 
 ###
