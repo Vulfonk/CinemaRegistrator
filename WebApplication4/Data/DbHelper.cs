@@ -16,8 +16,9 @@ namespace WebApplication4.Data
 
             var sessionsList = context.Sessions
                 .Select(s => new JsonSession(
-                        s.DateTime, s.FilmNavigation.Name, s.Film,
+                        s.DateTime, s.FilmNavigation.Name, 
                         s.Tickets.Where(t => t.IsSold == 0).Count(),
+                        s.Id,
                         s.HallNavigation.Number))
                 .ToList()
                 .Where(s => dtHelper.DateTimeInRange(s.StartTime, currentTime, 4));
@@ -26,23 +27,37 @@ namespace WebApplication4.Data
 
         }
 
+        internal AvailibleSeats GetSessionById(int sessionId)
+        {
+            using DbCinemaContext context = new DbCinemaContext();
+            var seats = context.Tickets
+                .Where(t => t.SessionNavigation == context.Sessions.FirstOrDefault(s => s.Id == sessionId))
+                .Select(s=>s.Place).ToList();
 
+            return new AvailibleSeats() { sessionId = sessionId, availibleSeats = seats };
+        }
+    }
+
+    public class AvailibleSeats
+    {
+        public int sessionId { get; set; }
+        public List<int> availibleSeats { get; set; }
     }
 
     public class JsonSession
     {
         public DateTime StartTime { get; set;}        
         public string FilmName { get; set;}
-        public int FilmID { get; }
+        public int SessionId { get; }
         public int AvailiblePlaces { get; set;}
         public int HallNumber { get; set;}
 
 
-        public JsonSession(string startStr, string film, int availiblePlaces, int filmId, int hallNum)
+        public JsonSession(string startStr, string film, int availiblePlaces, int sessionId, int hallNum)
         {
             StartTime = new DateTimeHelper().ParseDateTime(startStr);
             FilmName = film;
-            FilmID = filmId;
+            SessionId = sessionId;
             AvailiblePlaces = availiblePlaces;
             HallNumber = hallNum;
         }

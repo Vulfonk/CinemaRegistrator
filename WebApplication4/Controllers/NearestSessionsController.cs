@@ -19,6 +19,8 @@ namespace WebApplication4.Controllers
         public IEnumerable<JsonSession> Get(string date)
         {
             var helper = new DbHelper();
+            if(date.Last() == '\'')
+                date = date.Remove(date.Length - 1);
             return helper.GetSessions(DateTime.Parse(date));
         }
     }
