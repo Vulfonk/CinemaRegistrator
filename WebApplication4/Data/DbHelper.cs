@@ -1,6 +1,8 @@
 ﻿using CinemaDB.Data;
 using CinemaDB.Data.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace WebApplication4.Data
@@ -27,6 +29,15 @@ namespace WebApplication4.Data
 
         }
 
+        internal async void SeatPlace(int session, int place)
+        {
+            using DbCinemaContext context = new DbCinemaContext();
+            var t = context.Tickets.ToList().FirstOrDefault(t => t.Session == session && t.Place == place);
+
+
+            await context.SaveChangesAsync();
+        }
+
         internal AvailibleSeats GetSessionById(int sessionId)
         {
             using DbCinemaContext context = new DbCinemaContext();
@@ -34,14 +45,14 @@ namespace WebApplication4.Data
                 .Where(t => t.SessionNavigation == context.Sessions.FirstOrDefault(s => s.Id == sessionId))
                 .Select(s=>s.Place).ToList();
 
-            return new AvailibleSeats() { sessionId = sessionId, availibleSeats = seats };
+            return new AvailibleSeats() { sessionId = sessionId, availableSeats = seats };
         }
     }
 
     public class AvailibleSeats
     {
         public int sessionId { get; set; }
-        public List<int> availibleSeats { get; set; }
+        public List<int> availableSeats { get; set; }
     }
 
     public class JsonSession
