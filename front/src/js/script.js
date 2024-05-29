@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch movie data from the provided URL
     const fetchMovieData = async () => {
         try {
-            const response = await fetch('http://localhost:3003/main');
+            const response = await fetch('https://localhost:7056/NearestSessions?date=2024-05-03%2005%3A15');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

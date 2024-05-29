@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const seatsContainer = document.getElementById('seats');
 
-    fetch(`http://localhost:3003/infoReserved?session=${sessionId}`)
+    fetch(`https://localhost:7056/infoReserved?session=${sessionId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function bookSeat(seatNumber, sessionId) {
-    fetch('http://localhost:3003/bookSeat', {
+    fetch('https://localhost:7056/bookSeat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
