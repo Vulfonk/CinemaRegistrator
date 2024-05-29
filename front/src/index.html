@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Киномакс-XL Москва</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Киномакс-XL Москва</h1>
+            <p>Дмитровское шоссе, д. 89, ТРЦ «XL Дмитровка», 2 этаж</p>
+        </div>
+    </header>
+    <main>
+        <div class="schedule-container">
+            <nav class="date-nav">
+                <button>28 мая</button>
+                <button>29 мая</button>
+                <button>30 мая</button>
+                <button>31 мая</button>
+                <button>01 июня</button>
+                <button>02 июня</button>
+            </nav>
+            <section class="filter-section">
+                <button class="all-filter">Все</button>
+                <button class="2d-filter">2D</button>
+                <div class="time-filter">
+                    <label for="time-select">Весь день</label>
+                    <select id="time-select">
+                        <option value="all-day">Весь день</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+            </section>
+            <section class="movie-list">
+                <!-- Movies will be inserted here dynamically using JavaScript -->
+            </section>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
+

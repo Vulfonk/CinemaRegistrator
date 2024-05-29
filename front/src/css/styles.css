@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+}
+
+.header-container {
+    background-color: #ff007f;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-container h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header-container p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.schedule-container {
+    padding: 20px;
+}
+
+.date-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.date-nav button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.date-nav button:hover {
+    background-color: #555;
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-section button {
+    background-color: #ff007f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.filter-section .time-filter {
+    display: flex;
+    align-items: center;
+}
+
+.filter-section .time-filter label {
+    margin-right: 10px;
+}
+
+.filter-section .time-filter select {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+.movie-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.movie-item {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-item h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.movie-item p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.showtimes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.showtime {
+    background-color: #ff007f;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.showtime:hover {
+    background-color: #ff3399;
+}
+
+/* Add these styles to styles.css */
+
+.booking-container {
+    padding: 20px;
+}
+
+.booking-container h2 {
+    margin-top: 0;
+}
+
+.seats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.seat {
+    background-color: #ff007f;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.seat:hover {
+    background-color: #ff3399;
+}
+
